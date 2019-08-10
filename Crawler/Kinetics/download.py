@@ -79,7 +79,7 @@ def download_clip(video_identifier, output_filename,
                                 '%s.%%(ext)s' % uuid.uuid4())
     command = ['youtube-dl',
                '--quiet', '--no-warnings',
-               '-f', 'mp4',
+               '-f', '"bestvideo[ext=mp4][height<=360]/bestvideo[ext=mp4][width<=360]/bestvideo[ext=mp4][height<=480]/bestvideo[ext=mp4][width<=480]/bestvideo[ext=mp4]/bestvideo/best"',
                '-o', '"%s"' % tmp_filename,
                '"%s"' % (url_base + video_identifier)]
     command = ' '.join(command)
