@@ -4,7 +4,7 @@ import argparse
 
 
 status_and_reason_to_message_dict = {
-    ('Downloaded', ''): ['Downloaded', 
+    ('Downloaded', ''): ['Downloaded',
                          'Exists'],
 
     ('Network',''): ['unable to download video data',
@@ -70,7 +70,7 @@ def main(input_csv, input_json, output_file, trim_format='%06d', num_input=1):
     else:
         for i in range(num_input):
             json_files +=[input_json + ("-%02d" % (i+1))]
-    
+
     all_ouputs = wrapper_process_download_reports(json_files)
     all_ouputs = dict(all_ouputs)
 
@@ -91,14 +91,14 @@ def main(input_csv, input_json, output_file, trim_format='%06d', num_input=1):
     print("Done!!")
     dataset["status"] = status_lst
     dataset["reason"] = reason_lst
-    
+
     dataset.to_csv(output_file, index=False)
 
 if __name__ == '__main__':
     description = 'Helper script for processing the reports from downloading and trimming kinetics videos.'
     p = argparse.ArgumentParser(description=description)
     p.add_argument('input_csv', type=str,
-                   help=('CSV file containing the following format: ' 
+                   help=('CSV file containing the following format: '
                          'label,   youtube_id,  time_start,  time_end,    split,   is_cc'))
     p.add_argument('input_json', type=str,
                    help=('base name for download report json files'),
@@ -109,7 +109,7 @@ if __name__ == '__main__':
                    help=('This will be the format for the '
                          'filename of trimmed videos: '
                          'videoid_%0xd(start_time)_%0xd(end_time).mp4'))
-    p.add_argument('-n', '--num_input', 
+    p.add_argument('-n', '--num_input',
                     help=('number of input json files with the same base name input_json.'),
                     type=int, default=1)
     main(**vars(p.parse_args()))
