@@ -196,8 +196,8 @@ def main(input_csv, output_dir,
     shutil.rmtree(tmp_dir)
 
     # Save download report.
-    with open('download_report.json', 'w') as fobj:
-        fobj.write(json.dumps(status_lst))
+    with open('download_report.json', 'w', encoding='utf-8') as fobj:
+        fobj.write(json.dumps(status_lst.decode('utf-8')))
 
 
 if __name__ == '__main__':
